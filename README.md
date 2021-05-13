@@ -1,71 +1,62 @@
-# Getting Started with Create React App
+# Context-API + Reducer = **Redux**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Created basic **Todo-App** with context-api, reducer and actions
 
-## Available Scripts
+Reducer is used in very big scale applications, Formally, reducer is the authState object is the state that you want to be passed down to your components and actions object contains all the actions that you would typically use with Redux.
 
-In the project directory, you can run:
+The `useReducer` hook returns a dispatch function just like Redux.
+```javaScript
+  import { useReducer } from "react";
+```
 
-### `npm start`
+Need to create `action.types.js` file like what actions you what to perform in this application. I used `ADD_TODO` and `REMOVE_TODO` (**Actins should be in Uppercase**)
+For eg.  
+```javaScript
+  export const ADD_TODO = "ADD_TODO";
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Reducer takes advantage of action.types file and provide method to particular action
+For eg.
+```javaScript
+import { ADD_TODO } from "./action.types";
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+export default (state, action) => {
+  switch (action.type) {
+    case ADD_TODO:
+      break;
+    default:
+  }
+};
+```
 
-### `npm test`
+Here we normally use `switch` case to handle if there are multiple actions 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+action contains **action.type** type of action and **action.payload** like what information you need to carry
 
-### `npm run build`
+## useReducer
+```javaScript
+  const [state, dispatch] = useReducer(reducer, initialArg, init);
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`dispatch` method receives an object that represents the action we desire to be done.
+```javaScript
+  dispatch({
+        type: ADD_TODO,
+        payload: todo,
+  });
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Outputs
+![Screenshot from 2021-05-13 22-47](https://user-images.githubusercontent.com/56266493/118169998-3a604f00-b447-11eb-9393-7594ff3723f8.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+![Screenshot from 2021-05-13 22-47](https://user-images.githubusercontent.com/56266493/118170071-5237d300-b447-11eb-9216-6484572120fa.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Screenshot from 2021-05-13 22-48](https://user-images.githubusercontent.com/56266493/118170130-5f54c200-b447-11eb-89f7-5af30c7f5c27.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# context-api-reducer-
